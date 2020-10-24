@@ -1,0 +1,20 @@
+<launch>
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="world_name" value="/usr/share/gazebo-9/worlds/robocup14_spl_field.world"/>
+    <arg name="paused" value="false"/>
+    <arg name="use_sim_time" value="true"/>
+    <arg name="gui" value="true"/>
+    <arg name="headless" value="false"/>
+    <arg name="debug" value="false"/>
+  </include>
+
+  <include file="$(find husky_gazebo)/launch/spawn_husky.launch" >
+  	<arg name="laser_enabled" value="true"/>
+  </include>
+  
+  <include file="$(find husky_viz)/launch/view_robot.launch"/>
+  
+  <node name="teleop" pkg="teleop_twist_keyboard" type="teleop_twist_keyboard.py" output="screen" />
+  
+  
+</launch>
